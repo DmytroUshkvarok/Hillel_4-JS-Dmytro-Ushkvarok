@@ -6,6 +6,12 @@ console.log( checkNumber(-10) );
 function checkNumber(number) {
     let arrayOfResults = [];
     
+    if (number === 2) {
+        arrayOfResults.push(true, true, false);
+        
+        return arrayOfResults;
+    }
+    
     isPrime(number)
         ? arrayOfResults.push(true, false, false)
         : isDividedTen(number)

@@ -1,0 +1,269 @@
+.main-wrapper {
+    max-width: 1400px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+
+//  HEADER
+
+.sitetoolbar-wrapper {
+    background: linear-gradient(to right, #000000 30%, cornflowerblue 100%);
+}
+
+.sitetoolbar {
+    margin: 0 auto;
+    height: $sitetoolbarHeight;
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+
+    &__logo-box {
+        padding: 0 30px;
+        background: #000000;
+    }
+
+    &__navigation {
+        flex-grow: 1;
+    }
+
+    &__navigation-list {
+        display: flex;
+        height: $navigation-listHeight;
+        justify-content: space-around;
+    }
+
+    &__navigation-item {
+        background-color: rgba(2, 2, 2, .2);
+        border-radius: 5px;
+
+        &:hover {
+            background-color: #eafffd;
+        }
+    }
+
+    &__navigation-link {
+        display: block;
+        min-width: 50px;
+        padding: 0 30px;
+        color: #ffffff;
+        text-align: center;
+        font-family: $primaryFont;
+        font-size: 30px;
+        line-height: $navigation-listHeight;
+        text-decoration: none;
+
+        &:hover {
+            color: #009be2;
+        }
+    }
+}
+
+//  MAIN CONTENT
+
+.main-content {
+    min-height: calc(100vh - 70px);
+    position: relative;
+    padding-left: 250px;
+    transition: padding 200ms linear;
+
+    &--sidebar-hidden {
+        padding-left: 0;
+    }
+
+    &__page {
+        max-width: 800px;
+        margin: 0 auto;
+        min-height: calc(100vh - 210px);
+        padding: 30px 0;
+    }
+
+    &__header {
+        margin: 0 auto 30px;
+        text-align: center;
+        font-family: $primaryFont;
+        font-size: 40px;
+        line-height: $navigation-listHeight;
+        font-weight: 700;
+        background: linear-gradient(to bottom, #000000, #00abf9);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    &__content {
+        padding: 0 30px;
+
+        @media all and (max-width: 1200px){
+            padding: 0 65px;
+        }
+    }
+
+    &__text {
+        font-family: $primaryFont;
+        font-size: 17px;
+        line-height: 25px;
+        text-align: justify;
+        text-indent: 20px;
+        margin-bottom: 20px;
+
+    }
+
+    @media all and (max-width: 860px){
+        padding-left: 0;
+    }
+
+}
+
+.sidebar {
+    box-sizing: border-box;
+    width: 250px;
+    height: calc(100vh - 70px);
+    background: #ebf6ff;
+    border-right: 1px solid #c4ccd4;
+    position: fixed;
+    top: 70px;
+    left: 0;
+
+    transition: left 200ms linear;
+
+    &--full-height {
+        top: 0;
+        min-height: 100%;
+    }
+
+    &--hidden {
+        left: -250px;
+    }
+
+    &__toggle {
+        position: absolute;
+        top: 12px;
+        left: 100%;
+        margin-left: 12px;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        outline: none;
+
+        &:hover {
+            background-color: #e3fffc;
+
+        }
+    }
+
+    &__content {
+        height: 100%;
+        margin: 30px;
+    }
+
+    &__navigation-list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__navigation-item {
+        padding: 5px;
+        border-radius: 5px;
+
+        &:hover {
+            background-color: rgba(0, 0, 174, 0.2);
+        }
+    }
+
+    &__navigation-link {
+        display: block;
+        color: #000050;
+        text-decoration: none;
+        font-family: $primaryFont;
+        font-size: 20px;
+        line-height: 25px;
+
+        &:hover {
+            color: #0000ae;
+        }
+    }
+
+    &__socials {
+        margin: 20px auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+
+    &__socials-link {
+        text-decoration: none;
+        margin: 0 5px;
+    }
+
+    @media all and (max-width: 860px){
+        display: none;
+    }
+}
+
+//  FOOTER
+
+.footer {
+    margin-left: 250px;
+    background: linear-gradient(to bottom, #000085 0%, #000018 60%);
+    align-self: flex-end;
+    transition: margin 200ms linear;
+
+    &--sidebar-hidden {
+        margin-left: 0;
+    }
+
+    &__items-list {
+        display: flex;
+        width: 100%;
+        height: 50%;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        background-color: rgba(82, 60, 195, 0.06);
+    }
+
+    &__list-item {
+        border-radius: 5px;
+        margin: 10px;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, .15);
+        }
+    }
+
+    &__link {
+        display: block;
+        min-width: 40px;
+        padding: 5px 10px;
+        color: #ffffff;
+        text-align: center;
+        font-family: $primaryFont;
+        font-size: 15px;
+        line-height: 18px;
+        text-decoration: none;
+
+        &:hover {
+            color: #00e3ff;
+        }
+    }
+
+    &__signature {
+        margin-top: 15px;
+        padding-bottom: 15px;
+        color: #ffffff;
+        text-align: center;
+        font-family: $primaryFont;
+        font-size: 12px;
+        line-height: 18px;
+
+    }
+
+    @media all and (max-width: 860px){
+        margin-left: 0;
+    }
+}
