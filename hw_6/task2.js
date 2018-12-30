@@ -9,10 +9,8 @@ let incomingBanknote;
 
 do {
     incomingBanknote = +getValidIncomingBankNote(cashbox);
-    giveChange(incomingBanknote, cashbox);
-} while (incomingBanknote);
+} while (giveChange(incomingBanknote, cashbox));
 
-console.log( 'Please come when You\'ll decide to buy a ticket.' );
 console.dir( cashbox );
 
 function giveChange(value, object) {
@@ -28,36 +26,38 @@ function giveChange(value, object) {
 
 function giveChangeFrom25(object) {
     object[25]++;
-    return console.log( 'You have successfully bought 1 ticket. Your change is 0 :)' );
+    console.log( 'You have successfully bought 1 ticket. Your change is 0 :)' );
+    return true;
 }
 
 function giveChangeFrom50(object) {
     if (object[25]) {
         object[25]--;
         object[50]++;
-    
-        return console.log( 'You have successfully bought 1 ticket. Your change is 25 :)' );
+        console.log( 'You have successfully bought 1 ticket. Your change is 25 :)' );
+        return true;
     }
-    
-    return console.log( 'Sorry, we have no money to give You a change. Deal is impossible :(' );
+    console.log( 'Sorry, we have no money to give You a change. Deal is impossible :(' );
+    return false;
 }
 
 function giveChangeFrom100(object) {
     if (!object[25] || !object[50] && object[25] < 3) {
-        return console.log( 'Sorry, we have no money to give You a change. Deal is impossible :(' );
+        console.log( 'Sorry, we have no money to give You a change. Deal is impossible :(' );
+        return false;
     
     } else if (cashbox[50] > 0) {
         cashbox[25]--;
         cashbox[50]--;
         cashbox[100]++;
-        
-        return console.log( 'You have successfully bought 1 ticket. Your change is 75 (1 banknote 25 and 1 banknote 50)' );
-        
+        console.log( 'You have successfully bought 1 ticket. Your change is 75 (1 banknote 25 and 1 banknote 50)' );
+        return true;
+    
     } else {
         cashbox[25] -= 3;
         cashbox[100]++;
-        
-        return console.log( 'You have successfully bought 1 ticket. Your change is 75 (3 banknotes 25 each)' );
+        console.log( 'You have successfully bought 1 ticket. Your change is 75 (3 banknotes 25 each)' );
+        return true;
     }
 }
 
@@ -74,7 +74,7 @@ function getValidIncomingBankNote(object) {
             return value;
         }
     }
-    
+    console.log(`Be attentive when choosing a banknote for pay.`);
     return getValidIncomingBankNote(object);
 }
 
