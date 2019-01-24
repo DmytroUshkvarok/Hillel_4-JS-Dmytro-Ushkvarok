@@ -1,107 +1,174 @@
-'use strict';
+;'use strict';
 
-let headerNavigationToggle;
-let headerNavigationItems;
-let sidebar;
-let sidebarButton;
-let sidebarNavigationToggle;
-let sidebarNavigationItems;
-let sidebarNavigationList;
-let dataContent;
+let mainContent = document.createElement('main');
+mainContent.className = 'main-content';
+globalWrapper.appendChild(mainContent);
 
-headerNavigationToggle = document.getElementById('header__navigation-toggle');
-headerNavigationItems = document.getElementsByClassName('header__navigation-item');
-headerNavigationToggle.onclick = function () {
-    controlActiveStateOfElement.call(headerNavigationToggle, 'header__navigation-toggle');
-    controlStateOfBlock.call(headerNavigationItems, 'header__navigation-item');
-};
+function renderWelcomePage() {
+    let welcomePage = document.createElement('div');
+    welcomePage.className = 'main-content__page';
+        
+    let welcomePageHeader = document.createElement('h1');
+    welcomePageHeader.className = 'main-content__header';
+    welcomePageHeader.innerHTML = 'Welcome page!';
+    welcomePage.appendChild(welcomePageHeader);
+        
+    let welcomePageText = document.createElement('p');
+    welcomePageText.className = 'main-content__text';
+    welcomePageText.innerHTML = 'Hello! This is my working layout page within the FRONT-END PRO course.\n' +
+        'Here You can find my current JavaScript homeworks and studying results.';
+    welcomePage.appendChild(welcomePageText);
 
-sidebarNavigationToggle = document.getElementById('sidebar__navigation-toggle');
-sidebarNavigationItems = document.getElementsByClassName('sidebar__navigation-item');
-sidebarNavigationToggle.onclick = function () {
-    controlActiveStateOfElement.call(sidebarNavigationToggle, 'sidebar__navigation-toggle');
-    controlStateOfBlock.call(sidebarNavigationItems, 'sidebar__navigation-item');
-};
+    let welcomeImage = document.createElement('img');
+    welcomeImage.className = 'welcome-page-image';
+    welcomeImage.src = './images/welcome_page.jpg';
+    welcomeImage.alt = 'welcome_image';
+    welcomePage.appendChild(welcomeImage);
 
-sidebar = document.getElementById('sidebar');
-sidebarButton = document.getElementById('sidebar__button');
-sidebarButton.onclick = function () {
-    controlHiddenStateOfElement.call(sidebar, 'sidebar');
-};
-
-dataContent = document.getElementsByClassName('main-content__page');
-sidebarNavigationList = document.getElementById('sidebar__navigation-list');
-sidebarNavigationList.addEventListener('click', controlOfContentShowingState);
-
-window.addEventListener('resize', controlOfStatesOfAllChangingElements);
-window.onload = controlOfStatesOfAllChangingElements();
-
-function controlActiveStateOfElement(className) {
-    this.classList.toggle(`${className}--active`);
+    mainContent.appendChild(welcomePage)
 }
 
-function controlHiddenStateOfElement(className) {
-    this.classList.toggle(`${className}--hidden`);
-}
+document.addEventListener('DOMContentLoaded', renderWelcomePage);
 
-function controlStateOfBlock(className) {
-    let i;
-    for (i = 0; i < this.length; i++) {
-        this[i].classList.toggle(`${className}--hidden`);
-    }
-}
+document.addEventListener('DOMContentLoaded', () => {
 
-function controlOfContentShowingState() {
-    if (window.innerWidth < 768 && event.target.id !== 'sidebar__navigation-toggle') {
-        showHideContent();
-        sidebarNavigationToggle.classList.remove('sidebar__navigation-toggle--active');
-        for (let i = 0; i < sidebarNavigationItems.length; i++) {
-            sidebarNavigationItems[i].classList.toggle('sidebar__navigation-item--hidden');
+    welcomePageButton.addEventListener('click', () => {
+        mainContent.innerHTML = '';
+        renderWelcomePage();
+    });
+});
+
+// Homework "CREATING TABLE"
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    homeworkTableButton.addEventListener('click', function renderTablePage() {
+        
+        let tablePage = document.createElement('div');
+        tablePage.className = 'main-content__page';
+    
+        let tablePageHeader = document.createElement('h1');
+        tablePageHeader.className = 'main-content__header';
+        tablePageHeader.innerHTML = 'Generating custom table';
+        tablePage.appendChild(tablePageHeader);
+    
+        let tablePageText = document.createElement('p');
+        tablePageText.className = 'main-content__text';
+        tablePageText.innerHTML = 'Fill inputs by numbers to build a table please.';
+        tablePage.appendChild(tablePageText);
+    
+        let rowsInput = document.createElement('input');
+        rowsInput.className = 'table-input';
+        rowsInput.type = 'text';
+        rowsInput.placeholder = 'rows';
+        tablePage.appendChild(rowsInput);
+    
+        let columnsInput = document.createElement('input');
+        columnsInput.className = 'table-input';
+        columnsInput.type = 'text';
+        columnsInput.placeholder = 'columns';
+        tablePage.appendChild(columnsInput);
+    
+        let buttonToTableBuilding = document.createElement('input');
+        buttonToTableBuilding.className = 'table-button';
+        buttonToTableBuilding.type = 'button';
+        buttonToTableBuilding.value = 'Build';
+        tablePage.appendChild(buttonToTableBuilding);
+
+        mainContent.replaceChild(tablePage, mainContent.firstChild);
+        
+        buttonToTableBuilding.addEventListener('click', function buildTable() {
+                
+            let i;
+            let j;
+            let rows = rowsInput.value;
+            let columns = columnsInput.value;    
+
+            let table = document.createElement('table');
+            table.className = 'custom-table';            
+            
+            for (i = 1; i <= rows; i++) {
+                let tr = table.insertRow();
+                
+                for (j = 1; j <= columns; j++) {
+                    let td = tr.insertCell();
+                    td.title = `${i} x ${j}`;
+                    td.i = i;
+                    td.j = j;
+
+                    td.addEventListener('click', function() {
+                        alert(`Row ${td.i}` + `\n` + `Column ${td.j}`);
+                    });
+                }
+            }
+
+            if (tablePage.children.length > 5) {
+                tablePage.removeChild(tablePage.lastChild);
+            }
+
+            tablePage.appendChild(table);
+        });
+    });
+});
+
+
+// Homework "UNIVERSAL CLICK_ME FUNCTION"
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    homeworkClickMeButton.addEventListener('click', function renderClickMePage() {
+        
+        let clickMePage = document.createElement('div');
+        clickMePage.className = 'main-content__page';
+    
+        let clickMePageHeader = document.createElement('h1');
+        clickMePageHeader.className = 'main-content__header';
+        clickMePageHeader.innerHTML = 'Universal clickMe(event) function';
+        clickMePage.appendChild(clickMePageHeader);
+    
+        let clickMePageText = document.createElement('p');
+        clickMePageText.className = 'main-content__text';
+        clickMePageText.innerHTML = 'Push the button to colorise it. Push it again to uncolorise it.';
+        clickMePage.appendChild(clickMePageText);
+    
+        let clickMeButtonGreen = document.createElement('input');
+        clickMeButtonGreen.className = 'click-me-button';
+        clickMeButtonGreen.type = 'button';
+        clickMeButtonGreen.value = 'Green';
+        clickMeButtonGreen.color = 'green';
+        clickMePage.appendChild(clickMeButtonGreen);
+    
+        let clickMeButtonYellow = document.createElement('input');
+        clickMeButtonYellow.className = 'click-me-button';
+        clickMeButtonYellow.type = 'button';
+        clickMeButtonYellow.value = 'Yellow';
+        clickMeButtonYellow.color = 'yellow';
+        clickMePage.appendChild(clickMeButtonYellow);
+    
+        let clickMeButtonRed = document.createElement('input');
+        clickMeButtonRed.className = 'click-me-button';
+        clickMeButtonRed.type = 'button';
+        clickMeButtonRed.value = 'Red';
+        clickMeButtonRed.color = 'red';
+        clickMePage.appendChild(clickMeButtonRed);
+
+        mainContent.replaceChild(clickMePage, mainContent.firstChild);
+
+        clickMeButtonGreen.addEventListener('click', clickMe);
+        clickMeButtonYellow.addEventListener('click', clickMe);
+        clickMeButtonRed.addEventListener('click', clickMe);
+        
+        function clickMe(event) {
+            let element = this;
+
+            if (element.style.color == element.color) {
+                element.style.color = 'black';
+            } else {
+                element.style.color = element.color;
+            }
+        
+            return console.log(event);
         }
-    } else if (window.innerWidth >= 768) {
-        showHideContent();
-    }
-}
-
-function showHideContent(element) {
-    element = event.target;
-    for (let i = 0; i < dataContent.length; i++) {
-        dataContent[i].classList.add('main-content__page--unactive');
-    }
-    document.getElementById(element.dataset.targetElement).classList.remove('main-content__page--unactive');
-}
-
-function controlOfStatesOfAllChangingElements() {
-    controlStateOfElementDependingOnViewportWidth.call(headerNavigationToggle, 'header__navigation-toggle');
-    controlStateOfElementDependingOnViewportWidth.call(sidebarNavigationToggle, 'sidebar__navigation-toggle');
-    controlStateOfBlockDependingOnViewportWidth.call(headerNavigationItems, 'header__navigation-item');
-    controlStateOfBlockDependingOnViewportWidth.call(sidebarNavigationItems, 'sidebar__navigation-item');
-    controlStateOfElementDependingOnIntervalOfViewportWidth.call(sidebar, 'sidebar');
-}
-
-function controlStateOfElementDependingOnIntervalOfViewportWidth(className) {
-    if (window.innerWidth < 980 && window.innerWidth > 767) {
-        this.classList.add(`${className}--hidden`);
-    } else {
-        this.classList.remove(`${className}--hidden`);
-    }
-}
-
-function controlStateOfElementDependingOnViewportWidth(className) {
-    if (window.innerWidth > 767) {
-        this.classList.add(`${className}--hidden`);
-    } else {
-        this.classList.remove(`${className}--hidden`);
-    }
-}
-function controlStateOfBlockDependingOnViewportWidth(className) {
-    if (window.innerWidth > 767) {
-        for (let i = 0; i < this.length; i++) {
-            this[i].classList.remove(`${className}--hidden`);
-        }
-    } else {
-        for (let i = 0; i < this.length; i++) {
-            this[i].classList.add(`${className}--hidden`);
-        }
-    }
-}
+    });
+});

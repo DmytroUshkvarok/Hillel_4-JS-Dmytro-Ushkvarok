@@ -180,7 +180,7 @@ $primaryFont: Verdana ,sans-serif;
         top: 70px;
     }
 
-    &__toggle {
+    &__button {
         display: none;
         position: absolute;
         top: 12px;
@@ -229,6 +229,7 @@ $primaryFont: Verdana ,sans-serif;
     &__navigation-item {
         text-align: center;
         transition: all 300ms linear;
+        border-radius: 5px;
 
         &:hover {
             background-color: #eafffd;
@@ -311,7 +312,7 @@ $primaryFont: Verdana ,sans-serif;
         flex: 0;
         flex-grow: 1;
         overflow-y: scroll;
-        height: calc(100vh - 120px);
+        height: calc(100vh - 150px);
         padding: 0 40px 0 65px;
     }
 
@@ -337,7 +338,7 @@ $primaryFont: Verdana ,sans-serif;
         font-family: $primaryFont;
         font-weight: 700;
         text-align: center;
-        line-height: 30px;
+        line-height: 35px;
         margin: 20px 0;
         background: linear-gradient(to bottom, #000000, #009be2);
         -webkit-background-clip: text;
@@ -382,7 +383,7 @@ $primaryFont: Verdana ,sans-serif;
 
     @media all and (min-width: 768px) {
         align-self: flex-end;
-        height: 50px;
+        height: 80px;
         margin: 0;
         background: linear-gradient(to left, #000000 20%, #000040 100%);
     }
@@ -390,7 +391,7 @@ $primaryFont: Verdana ,sans-serif;
     &__items-list {
         display: flex;
         flex-direction: column;
-        margin: 10px 0;
+        margin: 20px 0;
 
         @media all and (min-width: 568px) {
             flex-direction: row;
@@ -406,6 +407,11 @@ $primaryFont: Verdana ,sans-serif;
 
     &__list-item {
         text-align: center;
+        flex-grow: 1;
+
+        &:last-child {
+            flex-grow: 0;
+        }
     }
 
     &__link {
@@ -495,4 +501,104 @@ $primaryFont: Verdana ,sans-serif;
             align-self: flex-end;
         }
     }
+}
+
+
+
+.welcome-page-image {
+    display: block;
+    margin: 20px auto;
+}
+
+.watches {
+    width: 150px;
+    height: 50px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: #0e1522;
+
+    @media all and (min-width: 768px) {
+        margin-right: 15px;
+    }
+
+    &__field {
+        display: block;
+        padding: 0 2px;
+        font-size: 30px;
+        color: #ffffff;
+    }
+}
+
+.date-box {
+    @extend .watches;
+    height: 60px;
+    align-self: flex-end;
+    flex-wrap: wrap;
+    align-content: center;
+    margin: 5px;
+
+    &__field {
+        display: block;
+        padding: 2px 2px;
+        font-size: 18px;
+        color: #ffffff;
+
+        &:last-child {
+            width: 100%;
+            font-size: 14px;
+            text-align: center;
+        }
+    }
+}
+
+.resize-screen {
+    width: 80px;
+    height: 20px;
+    margin: 5px;
+    color: #ffffff;
+    border-radius: 5px;
+    background-color: #0e1522;
+    text-align: center;
+    line-height: 20px;
+}
+
+.timing-screen {
+    height: 20px;
+    color: #ffffff;
+    font-size: 15px;
+    text-align: center;
+}
+
+//  HOMEWORKS
+
+.table-input {
+    margin: 0 20px;
+}
+
+.table-button {
+    width: 60px;
+    height: 30px;
+}
+
+.custom-table {
+    margin: 40px 0;
+    border-collapse: collapse;
+    
+    & td {
+        width: 50px;
+        height: 50px;
+        border: 1px solid #0000ff;
+    }
+}
+
+.click-me-button {
+    width: 100px;
+    height: 40px;
+    margin: 30px;
+    font-family: $primaryFont;
+    font-size: 22px;
+    font-weight: 700;
 }
