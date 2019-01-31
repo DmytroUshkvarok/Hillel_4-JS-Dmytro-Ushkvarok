@@ -423,6 +423,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     let td = tr.insertCell();
                     td.innerHTML = addingStudentFormInputs[input].value;
+                    addingStudentFormInputs[input].value = '';
                 }
             }
         });
