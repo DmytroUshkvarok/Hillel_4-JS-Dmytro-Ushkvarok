@@ -102,20 +102,6 @@ sidebarButton.onclick = function () {
     controlHiddenStateOfElement.call(sidebar, 'sidebar');
 };
 
-
-
-//  Sidebar navigation --> Homework#13
-
-// let homework13Button = document.createElement('li');
-// homework13Button.classList.add('sidebar__navigation-item', 'sidebar__navigation-item--hidden');
-// let homework13Link = document.createElement('a');
-// homework13Link.className = 'sidebar__navigation-link';
-// homework13Link.innerHTML = 'Homework#13';
-// homework13Button.appendChild(homework13Link);
-// sidebarNavigationList.appendChild(homework13Button);
-
-//  Sidebar navigation --> Homework#13
-
 // "create table" homework's button, link is adding
 
 let homeworkTableButton = document.createElement('li');
@@ -137,3 +123,25 @@ homeworkClickMeLink.innerHTML = 'Universal clickMe function';
 homeworkClickMeLink.href = '#';
 homeworkClickMeButton.appendChild(homeworkClickMeLink);
 sidebarNavigationList.appendChild(homeworkClickMeButton);
+
+// "SLIDER" homework's button, link
+
+let homeworkSliderButton = document.createElement('li');
+homeworkSliderButton.classList.add('sidebar__navigation-item', 'sidebar__navigation-item--hidden');
+let homeworkSliderLink = document.createElement('a');
+homeworkSliderLink.className = 'sidebar__navigation-link';
+homeworkSliderLink.innerHTML = 'Slider';
+homeworkSliderLink.href = '#';
+homeworkSliderButton.appendChild(homeworkSliderLink);
+sidebarNavigationList.appendChild(homeworkSliderButton);
+
+// "STUDENTS" homework's button, link
+
+let homeworkSStudentsButton = document.createElement('li');
+homeworkSStudentsButton.classList.add('sidebar__navigation-item', 'sidebar__navigation-item--hidden');
+let homeworkStudentsLink = document.createElement('a');
+homeworkStudentsLink.className = 'sidebar__navigation-link';
+homeworkStudentsLink.innerHTML = 'Students table';
+homeworkStudentsLink.href = '#';
+homeworkSStudentsButton.appendChild(homeworkStudentsLink);
+sidebarNavigationList.appendChild(homeworkSStudentsButton);
