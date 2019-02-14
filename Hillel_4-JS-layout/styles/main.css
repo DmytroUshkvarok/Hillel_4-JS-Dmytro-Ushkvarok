@@ -966,7 +966,7 @@ template {
 }
 
 .slider {
-  width: 600px;
+  width: 550px;
   height: 380px;
   margin: 30px auto;
   display: flex;
@@ -976,10 +976,11 @@ template {
   border: 1px solid blue;
 }
 .slider__image-box {
-  width: 500px;
+  width: 450px;
   height: 100%;
   overflow: hidden;
-  position: relative;
+  display: flex;
+  white-space: nowrap;
 }
 .slider__button {
   width: 50px;
@@ -1001,13 +1002,11 @@ template {
   transform: rotate(180deg);
 }
 .slider__image {
+  position: relative;
+  max-width: 450px;
+  min-width: 450px;
   height: 100%;
-  position: absolute;
-  margin-left: 50%;
-  transform: translateX(-50%);
-}
-.slider__image--hidden {
-  display: none;
+  left: 0;
 }
 
 .students-table {
@@ -1024,8 +1023,8 @@ template {
 }
 
 .students-form {
-  width: 300px;
-  height: 200px;
+  width: 400px;
+  height: auto;
   margin: 0 auto;
   border: 1px solid blue;
   border-radius: 5px;
@@ -1043,7 +1042,7 @@ template {
   margin: 5px;
 }
 .students-form__input {
-  width: 180px;
+  width: 280px;
   height: 20px;
   margin: 3px 0;
 }
@@ -1063,6 +1062,61 @@ template {
   margin: 10px auto;
   border-radius: 5px;
   cursor: pointer;
+}
+.students-form__change-button {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 1px solid grey;
+  cursor: pointer;
+  background: url("../images/shuffle.png") center center no-repeat;
+  background-clip: border-box;
+}
+.students-form__delete-button {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 1px solid grey;
+  cursor: pointer;
+  background: url("../images/remove.png") center center no-repeat;
+  background-clip: border-box;
+}
+
+.progress-bar {
+  height: 10px;
+  width: 100%;
+  margin: 10px 0;
+  background-color: lightseagreen;
+  transition: width 2000ms linear;
+}
+
+.article {
+  margin: 10px 30px;
+  padding: 10px;
+  border: 1px solid #9bda1e;
+  border-radius: 5px;
+  transition: all 1500ms linear;
+  overflow: hidden;
+}
+.article__header {
+  font-family: Verdana, sans-serif;
+  font-weight: 700;
+  transition: all 1500ms linear;
+  overflow: hidden;
+  font-size: 18px;
+}
+.article__text {
+  font-family: Verdana, sans-serif;
+  margin: 10px;
+  transition: all 1500ms linear;
+  overflow: hidden;
+  font-size: 15px;
+}
+.article__image {
+  height: 50px;
+  width: 100%;
+  margin: 0 auto;
+  transition: all 1500ms linear;
 }
 
 /*# sourceMappingURL=main.css.map */

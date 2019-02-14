@@ -137,11 +137,33 @@ sidebarNavigationList.appendChild(homeworkSliderButton);
 
 // "STUDENTS" homework's button, link
 
-let homeworkSStudentsButton = document.createElement('li');
-homeworkSStudentsButton.classList.add('sidebar__navigation-item', 'sidebar__navigation-item--hidden');
+let homeworkStudentsButton = document.createElement('li');
+homeworkStudentsButton.classList.add('sidebar__navigation-item', 'sidebar__navigation-item--hidden');
 let homeworkStudentsLink = document.createElement('a');
 homeworkStudentsLink.className = 'sidebar__navigation-link';
 homeworkStudentsLink.innerHTML = 'Students table';
 homeworkStudentsLink.href = '#';
-homeworkSStudentsButton.appendChild(homeworkStudentsLink);
-sidebarNavigationList.appendChild(homeworkSStudentsButton);
+homeworkStudentsButton.appendChild(homeworkStudentsLink);
+sidebarNavigationList.appendChild(homeworkStudentsButton);
+
+// "PROGRESS BAR 1" homework's button, link
+
+let homeworkProgressBar1Button = document.createElement('li');
+homeworkProgressBar1Button.classList.add('sidebar__navigation-item', 'sidebar__navigation-item--hidden');
+let homeworkProgressBar1Link = document.createElement('a');
+homeworkProgressBar1Link.className = 'sidebar__navigation-link';
+homeworkProgressBar1Link.innerHTML = 'Progress bar 1';
+homeworkProgressBar1Link.href = '#';
+homeworkProgressBar1Button.appendChild(homeworkProgressBar1Link);
+sidebarNavigationList.appendChild(homeworkProgressBar1Button);
+
+// "PROGRESS BAR 2" homework's button, link
+
+let homeworkProgressBar2Button = document.createElement('li');
+homeworkProgressBar2Button.classList.add('sidebar__navigation-item', 'sidebar__navigation-item--hidden');
+let homeworkProgressBar2Link = document.createElement('a');
+homeworkProgressBar2Link.className = 'sidebar__navigation-link';
+homeworkProgressBar2Link.innerHTML = 'Progress bar 2';
+homeworkProgressBar2Link.href = '#';
+homeworkProgressBar2Button.appendChild(homeworkProgressBar2Link);
+sidebarNavigationList.appendChild(homeworkProgressBar2Button);
