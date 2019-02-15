@@ -57,108 +57,111 @@ $primaryFont: Verdana ,sans-serif;
     }
 
     &__navigation {
-        margin: 0 auto;
-
-        @media all and (min-width: 568px) {
-            width: 50%;
-        }
-
-        @media all and (min-width: 768px) {
-            flex-grow: 1;
-        }
+        display: none;
     }
+//         margin: 0 auto;
 
-    &__navigation-list {
-        display: flex;
-        flex-direction: column;
-        background-color: rgba(0, 0, 0, 0.7);
-        border-radius: 5px;
-        margin: 20px 0;
-        padding: 10px;
+//         @media all and (min-width: 568px) {
+//             width: 50%;
+//         }
 
-        @media all and (min-width: 568px) {
-            margin-right: 20px;
-        }
+//         @media all and (min-width: 768px) {
+//             flex-grow: 1;
+//             width: auto;
+//         }
+//     }
 
-        @media all and (min-width: 768px) {
-            flex-direction: row;
-            justify-content: space-between;
-            margin: 0 20px;
-        }
-    }
+//     &__navigation-list {
+//         display: flex;
+//         flex-direction: column;
+//         background-color: rgba(0, 0, 0, 0.7);
+//         border-radius: 5px;
+//         margin: 20px 0;
+//         padding: 10px;
 
-    &__navigation-item {
-        border-radius: 5px;
-        text-align: center;
-        transition: all 300ms linear;
+//         @media all and (min-width: 568px) {
+//             margin-right: 20px;
+//         }
 
-        &:hover {
-            background-color: #eafffd;
-        }
+//         @media all and (min-width: 768px) {
+//             flex-direction: row;
+//             justify-content: space-between;
+//             margin: 0 20px;
+//         }
+//     }
 
-        &--hidden {
-            display: none;
-        }
+//     &__navigation-item {
+//         border-radius: 5px;
+//         text-align: center;
+//         transition: all 300ms linear;
 
-        &--first {
-            margin-top: 10px;
+//         &:hover {
+//             background-color: #eafffd;
+//         }
 
-            @media all and (min-width: 768px) {
-                margin: 0;
-            }
-        }
-    }
+//         &--hidden {
+//             display: none;
+//         }
 
-    &__navigation-link {
-        display: block;
-        min-width: 50px;
-        padding: 5px 20px;
-        color: #ffffff;
-        font-family: $primaryFont;
-        font-size: 25px;
-        text-decoration: none;
+//         &--first {
+//             margin-top: 10px;
 
-        &:hover {
-            color: #009be2;
-        }
+//             @media all and (min-width: 768px) {
+//                 margin: 0;
+//             }
+//         }
+//     }
 
-        @media all and (min-width: 768px) {
-            min-width: 40px;
-            font-size: 20px;
-            padding: 5px 15px;
-        }
+//     &__navigation-link {
+//         display: block;
+//         min-width: 50px;
+//         padding: 5px 20px;
+//         color: #ffffff;
+//         font-family: $primaryFont;
+//         font-size: 25px;
+//         text-decoration: none;
 
-        @media all and (min-width: 1200px) {
-            min-width: 50px;
-            font-size: 25px;
-            padding: 5px 25px;
-        }
-    }
+//         &:hover {
+//             color: #009be2;
+//         }
 
-    &__navigation-toggle {
-        border-radius: 3px;
-        padding: 5px 10px;
-        color: #ffffff;
-        text-align: center;
-        font-family: $primaryFont;
-        font-size: 26px;
-        letter-spacing: 1px;
-        text-decoration: none;
+//         @media all and (min-width: 768px) {
+//             min-width: 40px;
+//             font-size: 20px;
+//             padding: 5px 15px;
+//         }
 
-        &:hover {
-            background-color: #eafffd;
-            color: #009be2;
-            cursor: pointer;
-        }
+//         @media all and (min-width: 1200px) {
+//             min-width: 50px;
+//             font-size: 25px;
+//             padding: 5px 25px;
+//         }
+//     }
 
-        &--active {
-            color: #009be2;
-        }
+//     &__navigation-toggle {
+//         border-radius: 3px;
+//         padding: 5px 10px;
+//         color: #ffffff;
+//         text-align: center;
+//         font-family: $primaryFont;
+//         font-size: 26px;
+//         letter-spacing: 1px;
+//         text-decoration: none;
 
-        &--hidden {
-            display: none;
-        }
-    }
+//         &:hover {
+//             background-color: #eafffd;
+//             color: #009be2;
+//             cursor: pointer;
+//         }
+
+//         &--active {
+//             color: #009be2;
+//         }
+
+//         &--hidden {
+//             display: none;
+//         }
+//     }
 }
 
 .sidebar {
@@ -771,4 +774,87 @@ $primaryFont: Verdana ,sans-serif;
         margin: 0 auto;
         transition: all 1500ms linear;
     }
+}
+
+// .autocomplete {
+//     width: 280px;
+//     height: 40px;
+//     background-color: #d0d0f3;
+//     border-radius: 5px;
+//     padding: 5px;
+//     display: flex;
+//     justify-content: space-around;
+//     align-items: center;
+    
+//     &__input {
+//         display: inline-block;
+//         width: 180px;
+//         height: 25px;
+//         font-family: $primaryFont;
+//         font-size: 15px;
+//     }
+
+//     &__submit {
+//         width: 70px;
+//         height: 30px;
+//         font-family: $primaryFont;
+//         font-size: 15px;
+//         cursor: pointer;
+//     }
+// }
+
+.autocomplete {
+    /*the container must be positioned relative:*/
+    position: relative;
+    display: flex;
+}
+
+input {
+    border: 1px solid transparent;
+    padding: 10px;
+    font-size: 16px;
+}
+
+input[type=text] {
+    background-color: #ffffff;
+    width: 100%;
+    font-family: $primaryFont;
+}
+
+input[type=submit] {
+    background-color: rgb(12, 106, 201);
+    color: #fff;
+    cursor: pointer;
+    font-family: $primaryFont;
+
+}
+
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    /*position the autocomplete items to be the same width as the container:*/
+    top: 100%;
+    left: 0;
+    right: 0;
+}
+
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff; 
+    border-bottom: 1px solid #d4d4d4; 
+    font-family: $primaryFont;
+}
+
+.autocomplete-items div:hover {
+    /*when hovering an item:*/
+    background-color: #e9e9e9; 
+}
+.autocomplete-active {
+    /*when navigating through the items using the arrow keys:*/
+    background-color: DodgerBlue !important; 
+    color: #ffffff; 
 }

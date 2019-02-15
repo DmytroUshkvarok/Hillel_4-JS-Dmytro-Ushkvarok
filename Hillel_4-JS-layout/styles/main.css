@@ -441,102 +441,6 @@ template {
   }
 }
 .header__navigation {
-  margin: 0 auto;
-}
-@media all and (min-width: 568px) {
-  .header__navigation {
-    width: 50%;
-  }
-}
-@media all and (min-width: 768px) {
-  .header__navigation {
-    flex-grow: 1;
-  }
-}
-.header__navigation-list {
-  display: flex;
-  flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.7);
-  border-radius: 5px;
-  margin: 20px 0;
-  padding: 10px;
-}
-@media all and (min-width: 568px) {
-  .header__navigation-list {
-    margin-right: 20px;
-  }
-}
-@media all and (min-width: 768px) {
-  .header__navigation-list {
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 0 20px;
-  }
-}
-.header__navigation-item {
-  border-radius: 5px;
-  text-align: center;
-  transition: all 300ms linear;
-}
-.header__navigation-item:hover {
-  background-color: #eafffd;
-}
-.header__navigation-item--hidden {
-  display: none;
-}
-.header__navigation-item--first {
-  margin-top: 10px;
-}
-@media all and (min-width: 768px) {
-  .header__navigation-item--first {
-    margin: 0;
-  }
-}
-.header__navigation-link {
-  display: block;
-  min-width: 50px;
-  padding: 5px 20px;
-  color: #ffffff;
-  font-family: Verdana, sans-serif;
-  font-size: 25px;
-  text-decoration: none;
-}
-.header__navigation-link:hover {
-  color: #009be2;
-}
-@media all and (min-width: 768px) {
-  .header__navigation-link {
-    min-width: 40px;
-    font-size: 20px;
-    padding: 5px 15px;
-  }
-}
-@media all and (min-width: 1200px) {
-  .header__navigation-link {
-    min-width: 50px;
-    font-size: 25px;
-    padding: 5px 25px;
-  }
-}
-.header__navigation-toggle {
-  border-radius: 3px;
-  padding: 5px 10px;
-  color: #ffffff;
-  text-align: center;
-  font-family: Verdana, sans-serif;
-  font-size: 26px;
-  letter-spacing: 1px;
-  text-decoration: none;
-}
-.header__navigation-toggle:hover {
-  background-color: #eafffd;
-  color: #009be2;
-  cursor: pointer;
-}
-.header__navigation-toggle--active {
-  color: #009be2;
-}
-.header__navigation-toggle--hidden {
   display: none;
 }
 
@@ -1117,6 +1021,62 @@ template {
   width: 100%;
   margin: 0 auto;
   transition: all 1500ms linear;
+}
+
+.autocomplete {
+  /*the container must be positioned relative:*/
+  position: relative;
+  display: flex;
+}
+
+input {
+  border: 1px solid transparent;
+  padding: 10px;
+  font-size: 16px;
+}
+
+input[type=text] {
+  background-color: #ffffff;
+  width: 100%;
+  font-family: Verdana, sans-serif;
+}
+
+input[type=submit] {
+  background-color: #0c6ac9;
+  color: #fff;
+  cursor: pointer;
+  font-family: Verdana, sans-serif;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+  font-family: Verdana, sans-serif;
+}
+
+.autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: #e9e9e9;
+}
+
+.autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: DodgerBlue !important;
+  color: #ffffff;
 }
 
 /*# sourceMappingURL=main.css.map */
