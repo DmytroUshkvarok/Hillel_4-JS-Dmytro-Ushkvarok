@@ -1029,23 +1029,23 @@ template {
   display: flex;
 }
 
-input {
+#myInput {
   border: 1px solid transparent;
   padding: 10px;
   font-size: 16px;
-}
-
-input[type=text] {
   background-color: #ffffff;
   width: 100%;
   font-family: Verdana, sans-serif;
 }
 
-input[type=submit] {
+.submit {
   background-color: #0c6ac9;
   color: #fff;
   cursor: pointer;
   font-family: Verdana, sans-serif;
+  border: 1px solid transparent;
+  padding: 10px;
+  font-size: 16px;
 }
 
 .autocomplete-items {

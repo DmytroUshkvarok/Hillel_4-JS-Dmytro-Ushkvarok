@@ -11,6 +11,7 @@ input.placeholder = 'Enter country name';
 autocompleteForm.appendChild(input);
 
 let submit = document.createElement('input');
+submit.className = 'submit';
 submit.type = 'submit';
 submit.value = 'Show';
 autocompleteForm.appendChild(submit);

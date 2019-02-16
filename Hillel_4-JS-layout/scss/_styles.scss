@@ -809,23 +809,23 @@ $primaryFont: Verdana ,sans-serif;
     display: flex;
 }
 
-input {
+#myInput {
     border: 1px solid transparent;
     padding: 10px;
     font-size: 16px;
-}
-
-input[type=text] {
     background-color: #ffffff;
     width: 100%;
     font-family: $primaryFont;
 }
 
-input[type=submit] {
+.submit {
     background-color: rgb(12, 106, 201);
     color: #fff;
     cursor: pointer;
     font-family: $primaryFont;
+    border: 1px solid transparent;
+    padding: 10px;
+    font-size: 16px;
 
 }
 

@@ -5,4 +5,9 @@
 *.rar
 .idea/
 *.code-workspace
+node_modules/
+package-lock.json
+server.js
+db/
 
+request.js
