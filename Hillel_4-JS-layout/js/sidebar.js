@@ -81,7 +81,7 @@ sidebar.appendChild(socials);
 
 let signature = document.createElement('div');
 signature.classList.add('signature', 'signature--sidebar');
-signature.innerHTML = '&copy; 2018&nbsp; Dmytro Ushkvarok<br/>Hillel_4 JS';
+signature.innerHTML = '&copy; 2018 - 2019&nbsp; Dmytro Ushkvarok<br/>Hillel_4 JS';
 sidebar.appendChild(signature);
 
 //  Sidebar button

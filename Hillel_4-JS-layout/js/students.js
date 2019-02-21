@@ -19,74 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
         studentsPageText.innerHTML = 'You can add somebody filling the existable form.';
         studentsPage.appendChild(studentsPageText);
 
-        let studentsTable = document.createElement('table');
-        studentsTable.className = 'students-table';
-
-        let arrayOfColumnsNames = ['№', 'Surname', 'Name', 'Start', 'Finish', 'Faculty', 'Phone', 'Change', 'Delete'];
-        let studentsDataBase = {};
-
-        let Student = function(id, surname, name, start, finish, faculty, phone = "Unknown") {
-
-            this.id = id;
-            this.surname = surname;
-            this.name = name;
-            this.start = start;
-            this.finish = finish;
-            this.fuculty = faculty;
-            this.phone = phone;
-        };
-
-        let student1 = new Student(1, 'Ivanov', 'Ivan', 2010, 2015, "Faculty of law", "+380121234567");
-        let student2 = new Student(2, 'Petrov', 'Petro', 2007, 2010, "Faculty of electronics");
-        let student3 = new Student(3, 'Kozlov', 'Egor', 2011, 2015, "Faculty of law", "+380561234567");
-        let student4 = new Student(4, 'Kusch', 'Gennadiy', 2011, 2016, "Faculty of computers");
-        let student5 = new Student(5, 'Lyubomirov', 'Lyubomir', 2012, 2013, "Faculty of phisics", "+380121683467");
-
-        studentsDataBase[0] = student1;
-        studentsDataBase[1] = student2;
-        studentsDataBase[2] = student3;
-        studentsDataBase[3] = student4;
-        studentsDataBase[4] = student5;
-
-        let tr = studentsTable.insertRow();
-
-        arrayOfColumnsNames.forEach(function(element) {
-
-            let td = tr.insertCell();
-            td.innerHTML = element;
-            td.style.backgroundColor = 'yellow';
-            td.style.fontWeight = '700';
-        });
-        studentsTable.appendChild(tr);
-
-        let studentsKeys = Object.keys(studentsDataBase[0]);
-
-        for (let student in studentsDataBase) {
-
-            let studentProfile = studentsDataBase[student];
-            let tr = studentsTable.insertRow();
-
-            studentsKeys.forEach(function(element) {
-
-                let td = tr.insertCell();
-                td.innerHTML = studentProfile[element];
-            });
-
-            let changeBox = tr.insertCell();
-            let changeDataInput = document.createElement('input');
-            changeDataInput.type = 'button';
-            changeDataInput.className = 'students-form__change-button';
-            changeBox.appendChild(changeDataInput);
-
-            let deleteBox = tr.insertCell();
-            let deleteDataInput = document.createElement('input');
-            deleteDataInput.type = 'button';
-            deleteDataInput.className = 'students-form__delete-button';
-            deleteBox.appendChild(deleteDataInput);
-        }
-
-        studentsPage.appendChild(studentsTable);
-
         let addingStudentForm = document.createElement('form');
         addingStudentForm.className = 'students-form';
 
@@ -179,60 +111,284 @@ document.addEventListener('DOMContentLoaded', function() {
         addingStudentToFormButton.className = 'students-form__submit';
         addingStudentForm.appendChild(addingStudentToFormButton);
 
-        studentsPage.insertBefore(addingStudentForm, studentsTable);
+        studentsPage.appendChild(addingStudentForm);
 
-        addingStudentForm.addEventListener('submit', function() {
+        studentIdInput.addEventListener('focus', function() {
 
-            let tr = studentsTable.insertRow();
+            let tip = document.createElement('span');
+            tip.className = 'students-form__tip';
+            tip.innerHTML = 'Note: you need to use only numbers to fill ID';
 
-            let addingStudentFormInputs = document.getElementsByClassName('students-form__input');
-            
-            for (let input in addingStudentFormInputs) {
+            const studentsTable = document.getElementsByClassName('students-table')[0];
+            studentsPage.insertBefore(tip, studentsTable);
+        });
+
+        studentIdInput.addEventListener('blur', function() {
+            const tip = document.getElementsByClassName('students-form__tip')[0];           
+            studentsPage.removeChild(tip);
+        });
+
+        function colorizeStudentIdInputAndShowTip() {
+
+            const validationStatus = validateId(this.value);
+
+            if (validationStatus === 'no data') {
                 
-                if (input === '0' || +input) {
+                this.style.border = 'red 2px solid';
+                this.style.outline = 'none';
 
-                    let td = tr.insertCell();
-                    td.innerHTML = addingStudentFormInputs[input].value || "Unknown";
-                    addingStudentFormInputs[input].value = '';
+                const tip = document.getElementsByClassName('students-form__tip')[0];
+                tip.classList.remove('students-form__tip--fine');
+                tip.classList.add('students-form__tip--error');
+                tip.innerHTML = 'Enter ID using only numbers';
+            }
+            
+            if (validationStatus === 'bad data') {
+                
+                this.style.border = 'red 2px solid';
+                this.style.outline = 'none';
+
+                const tip = document.getElementsByClassName('students-form__tip')[0];
+                tip.classList.remove('students-form__tip--fine');
+                tip.classList.add('students-form__tip--error');
+                tip.innerHTML = 'You need to use only numbers';
+            }
+            
+            if (validationStatus === 'already exists') {
+                
+                this.style.border = 'red 2px solid';
+                this.style.outline = 'none';
+
+                const tip = document.getElementsByClassName('students-form__tip')[0];
+                tip.classList.remove('students-form__tip--fine');
+                tip.classList.add('students-form__tip--error');
+                tip.innerHTML = 'Student with this ID is already in database';
+            }
+            
+            if (validationStatus === 'ok') {
+
+                this.style.border = 'green 2px solid';
+                this.style.outline = 'none';
+
+                const tip = document.getElementsByClassName('students-form__tip')[0];
+                tip.classList.remove('students-form__tip--error');
+                tip.classList.add('students-form__tip--fine');
+                tip.innerHTML = 'All is good =)';
+            }
+        }
+
+        studentIdInput.addEventListener('input', colorizeStudentIdInputAndShowTip);
+
+        function validateId(value) {
+            
+            const valueToNum = +value;
+
+            if (!valueToNum) return 'no data';
+
+            if (isNaN(valueToNum) || !isFinite(valueToNum)) return 'bad data';
+
+            for (let i = 0; i < studentsDataBase.length; i++) {
+
+                if (studentsDataBase[i].id === valueToNum) return 'already exists';
+            }
+            
+            return 'ok';
+        }
+
+
+        studentSurnameInput.addEventListener('focus', showTipForTextDataInput);
+        studentSurnameInput.addEventListener('blur', removeTip);
+        studentSurnameInput.addEventListener('input', colorizeTextDataInputAndShowTip);
+
+        studentNameInput.addEventListener('focus', showTipForTextDataInput);
+        studentNameInput.addEventListener('blur', removeTip);
+        studentNameInput.addEventListener('input', colorizeTextDataInputAndShowTip);
+
+        studentFacultyInput.addEventListener('focus', showTipForTextDataInput);
+        studentFacultyInput.addEventListener('blur', removeTip);
+        studentFacultyInput.addEventListener('input', colorizeTextDataInputAndShowTip);
+
+        function showTipForTextDataInput() {
+
+            let tip = document.createElement('span');
+            tip.className = 'students-form__tip';
+            tip.innerHTML = 'Note: you need to use only latin letters to fill this area.' + 
+                ' First letter need to be in uppercase.';
+
+            const studentsTable = document.getElementsByClassName('students-table')[0];
+            studentsPage.insertBefore(tip, studentsTable);
+        }
+
+        function removeTip() {
+            const tip = document.getElementsByClassName('students-form__tip')[0];           
+            studentsPage.removeChild(tip);
+        }        
+
+        function colorizeTextDataInputAndShowTip() {
+
+            const validationStatus = validateText(this.value);
+
+            if (validationStatus === 'no data') {
+                
+                this.style.border = 'red 2px solid';
+                this.style.outline = 'none';
+
+                const tip = document.getElementsByClassName('students-form__tip')[0];
+                tip.classList.remove('students-form__tip--fine');
+                tip.classList.add('students-form__tip--error');
+                tip.innerHTML = 'You need to write something here.';
+            }
+            
+            if (validationStatus === 'excess symbols') {
+                
+                this.style.border = 'red 2px solid';
+                this.style.outline = 'none';
+
+                const tip = document.getElementsByClassName('students-form__tip')[0];
+                tip.classList.remove('students-form__tip--fine');
+                tip.classList.add('students-form__tip--error');
+                tip.innerHTML = 'You need to use only latin letters.';
+            }
+            
+            if (validationStatus === 'check first letter') {
+                
+                this.style.border = 'red 2px solid';
+                this.style.outline = 'none';
+
+                const tip = document.getElementsByClassName('students-form__tip')[0];
+                tip.classList.remove('students-form__tip--fine');
+                tip.classList.add('students-form__tip--error');
+                tip.innerHTML = 'First letter need to be in uppercase.';
+            }
+
+            if (validationStatus === 'ok') {
+
+                this.style.border = 'green 2px solid';
+                this.style.outline = 'none';
+
+                const tip = document.getElementsByClassName('students-form__tip')[0];
+                tip.classList.remove('students-form__tip--error');
+                tip.classList.add('students-form__tip--fine');
+                tip.innerHTML = 'All is good =)';
+            }
+        }        
+
+        function validateText(value) {
+
+            const text = value;
+            const textToArray = text.split('');
+
+            if (!textToArray.length) return 'no data';
+
+            for (let i = 0; i < textToArray.length; i++) {
+
+                if (!(textToArray[i] >= 'A' && textToArray[i] <= 'Z' || 
+                    textToArray[i] >= 'a' && textToArray[i] <= 'z' || 
+                    textToArray[i] === ' ' || textToArray[i] === '-')) {
+
+                    return 'excess symbols';
                 }
             }
 
-            let changeBox = tr.insertCell();
-            let changeDataInput = document.createElement('input');
-            changeDataInput.type = 'button';
-            changeDataInput.className = 'students-form__change-button';
-            changeBox.appendChild(changeDataInput);
+            if (textToArray[0] > 'Z' || textToArray[0] < 'A') return 'check first letter';
 
-            let deleteBox = tr.insertCell();
-            let deleteDataInput = document.createElement('input');
-            deleteDataInput.type = 'button';
-            deleteDataInput.className = 'students-form__delete-button';
-            deleteBox.appendChild(deleteDataInput);
-        });
+            return 'ok';
+        }
 
 
-        // studentIdInput.addEventListener('focus', function() {
 
-        //     this.style.borderColor = 'blue';
-        //     this.style.borderWidth = '1px';
-        //     this.style.outline = 'none';
-        //     let tip = document.createElement('span');
-        //     tip.className = 'students-form__tip';
-        //     tip.innerHTML = 'Note: you need to use only numbers to fill ID';
-        //     studentsPage.insertBefore(tip, studentsTable);
-        // });
+        addingStudentForm.addEventListener('submit', function() {
 
-        // studentIdInput.addEventListener('blur', function() {
+            const newId = studentIdInput.value;
+            const newSurname = studentSurnameInput.value;
+            const newName = studentNameInput.value;
+            const newStart = studentStartInput.value;
+            const newFinish = studentFinishInput.value;
+            const newFaculty = studentFacultyInput.value;
+            const newPhone = studentPhoneInput.value;
 
-        //     this.style.borderColor = 'inherit';
-        //     this.style.border = 'inherit';
-        //     this.style.outline = 'inherit';
-        //     let tip = document.createElement('span');
+            const newStudent = new Student(newId, newSurname, newName, newStart, newFinish, newFaculty, newPhone);
+            const addingStudentFormInputs = document.getElementsByClassName('students-form__input');
             
-        //     studentsPage.removeChild(tip);
-        // });
+            for (let input in addingStudentFormInputs) {                
+                addingStudentFormInputs[input].value = '';
+            }
 
+            studentsDataBase.push(newStudent);
+            renderStudentsTable(studentsDataBase);
+        });
+        
+        function renderStudentsTable(database) {
 
+            if (document.getElementsByClassName('students-table').length !== 0) {
+                studentsPage.removeChild(studentsPage.lastChild);
+            }
+
+            let studentsTable = document.createElement('table');
+            studentsTable.className = 'students-table';
+
+            let tr = studentsTable.insertRow();
+
+            arrayOfColumnsNames.forEach(function(element) {
+
+                let td = tr.insertCell();
+                td.innerHTML = element;
+                td.style.backgroundColor = 'yellow';
+                td.style.fontWeight = '700';
+            });
+
+            studentsTable.appendChild(tr);
+
+            let studentsKeys = Object.keys(database[0]);
+
+            for (let student in database) {
+
+                let studentProfile = database[student];
+                let tr = studentsTable.insertRow();
+
+                studentsKeys.forEach(function(element) {
+
+                    let td = tr.insertCell();
+                    td.innerHTML = studentProfile[element];
+                });
+
+                let changeBox = tr.insertCell();
+                let changeDataInput = document.createElement('input');
+                changeDataInput.type = 'button';
+                changeDataInput.className = 'students-form__change-button';
+                changeBox.appendChild(changeDataInput);
+
+                let deleteBox = tr.insertCell();
+                let deleteDataInput = document.createElement('input');
+                deleteDataInput.type = 'button';
+                deleteDataInput.className = 'students-form__delete-button';
+                deleteBox.appendChild(deleteDataInput);
+            }
+
+            studentsPage.appendChild(studentsTable);
+        }
+
+        let arrayOfColumnsNames = ['ID', 'Surname', 'Name', 'Start', 'Finish', 'Faculty', 'Phone', 'Change', 'Delete'];
+        let studentsDataBase = [];
+
+        function Student(id, surname, name, start, finish, faculty, phone = "Unknown") {
+
+            this.id = id;
+            this.surname = surname;
+            this.name = name;
+            this.start = start;
+            this.finish = finish;
+            this.fuculty = faculty;
+            this.phone = phone;
+        };
+
+        studentsDataBase[0] = new Student(1, 'Ivanov', 'Ivan', 2010, 2015, "Faculty of law", "+380121234567");
+        studentsDataBase[1] = new Student(2, 'Petrov', 'Petro', 2007, 2010, "Faculty of electronics");
+        studentsDataBase[2] = new Student(3, 'Kozlov', 'Egor', 2011, 2015, "Faculty of law", "+380561234567");
+        studentsDataBase[3] = new Student(4, 'Kusch', 'Gennadiy', 2011, 2016, "Faculty of computers");
+        studentsDataBase[4] = new Student(5, 'Lyubomirov', 'Lyubomir', 2012, 2013, "Faculty of phisics", "+380121683467");
+
+        renderStudentsTable(studentsDataBase);
 
         mainContent.replaceChild(studentsPage, mainContent.firstChild);
     });
