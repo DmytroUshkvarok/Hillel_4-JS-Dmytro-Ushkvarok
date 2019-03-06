@@ -414,6 +414,7 @@ template {
     height: 70px;
     width: 100%;
     flex-grow: 0;
+    flex-wrap: nowrap;
   }
 }
 .header__logo-box {
@@ -578,6 +579,11 @@ template {
 @media all and (min-width: 1200px) {
   .main-content__page {
     max-width: 900px;
+  }
+}
+@media all and (min-width: 768px) {
+  .main-content__page {
+    height: calc(100vh - 200px);
   }
 }
 .main-content__page--unactive {
@@ -806,7 +812,7 @@ template {
 }
 
 .resize-screen {
-  width: 80px;
+  width: 120px;
   height: 20px;
   margin: 5px;
   color: #ffffff;
@@ -895,12 +901,20 @@ template {
   left: 0;
 }
 
-.students-table {
+.students-table, .jquery-table {
   margin: 20px auto;
   min-width: 600px;
   border-collapse: collapse;
 }
-.students-table td {
+.students-table th, .jquery-table th {
+  border: 1px solid #0000ff;
+  font-family: Verdana, sans-serif;
+  font-size: 16px;
+  padding: 5px;
+  text-align: center;
+  background-color: yellow;
+}
+.students-table td, .jquery-table td {
   border: 1px solid #0000ff;
   font-family: Verdana, sans-serif;
   font-size: 16px;
@@ -908,7 +922,7 @@ template {
   text-align: center;
 }
 
-.students-form {
+.students-form, .jquery-form {
   width: 400px;
   height: auto;
   margin: 0 auto;
@@ -921,18 +935,18 @@ template {
   align-items: baseline;
   justify-items: center;
 }
-.students-form__text {
+.students-form__text, .jquery-form__text {
   display: block;
   font-family: Verdana, sans-serif;
   flex-grow: 1;
   margin: 5px;
 }
-.students-form__input {
+.students-form__input, .jquery-form__input {
   width: 280px;
   height: 20px;
   margin: 3px 0;
 }
-.students-form__tip {
+.students-form__tip, .jquery-form__tip {
   color: blue;
   font-size: 12px;
   font-family: Verdana, sans-serif;
@@ -947,7 +961,7 @@ template {
 .students-form__tip--fine {
   color: green;
 }
-.students-form__submit {
+.students-form__submit, .jquery-form__submit {
   width: 150px;
   height: 30px;
   font-family: Verdana, sans-serif;
@@ -1026,21 +1040,39 @@ template {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  flex-wrap: no-wrap;
+}
+.weather-sheet__data {
+  display: flex;
+  flex-wrap: wrap;
 }
 .weather-sheet__item {
   color: #ffffff;
   font-family: Verdana, sans-serif;
-  margin: 5px 10px;
+  margin: 5px 8px;
   display: inline-block;
   font-size: 15px;
-  font-weight: 700;
 }
 .weather-sheet__img {
   max-width: 40px;
   max-height: 40px;
   width: 100%;
   margin: 5px;
+}
+
+#map {
+  height: 100%;
+  margin: 20px 30px;
+}
+
+.jquery-table {
+  font-size: 10px;
+}
+
+.jquery-form {
+  margin: 30px auto;
+}
+.jquery-form__text {
+  min-width: 100px;
 }
 
 /*# sourceMappingURL=main.css.map */

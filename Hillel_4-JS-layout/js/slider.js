@@ -50,6 +50,11 @@ document.addEventListener('DOMContentLoaded', function() {
             function showSlide() {
 
                 let element = this;
+
+                if (!document.getElementsByClassName('slider').length) {
+
+                    return clearInterval(interval);
+                }
     
                 if (element === sliderButtonRight) {
 
@@ -111,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                         
                         sliderImages[0].removeEventListener('transitionend', changePositionLeft);
-                    }      
+                    }
                 }
             }
             

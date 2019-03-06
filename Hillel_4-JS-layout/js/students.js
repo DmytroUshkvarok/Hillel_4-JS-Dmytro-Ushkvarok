@@ -371,7 +371,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let arrayOfColumnsNames = ['ID', 'Surname', 'Name', 'Start', 'Finish', 'Faculty', 'Phone', 'Change', 'Delete'];
         let studentsDataBase = [];
 
-        function Student(id, surname, name, start, finish, faculty, phone = "Unknown") {
+        function Student(id, surname, name, start, finish, faculty, phone = 'Unknown') {
 
             this.id = id;
             this.surname = surname;
@@ -382,11 +382,11 @@ document.addEventListener('DOMContentLoaded', function() {
             this.phone = phone;
         };
 
-        studentsDataBase[0] = new Student(1, 'Ivanov', 'Ivan', 2010, 2015, "Faculty of law", "+380121234567");
-        studentsDataBase[1] = new Student(2, 'Petrov', 'Petro', 2007, 2010, "Faculty of electronics");
-        studentsDataBase[2] = new Student(3, 'Kozlov', 'Egor', 2011, 2015, "Faculty of law", "+380561234567");
-        studentsDataBase[3] = new Student(4, 'Kusch', 'Gennadiy', 2011, 2016, "Faculty of computers");
-        studentsDataBase[4] = new Student(5, 'Lyubomirov', 'Lyubomir', 2012, 2013, "Faculty of phisics", "+380121683467");
+        studentsDataBase[0] = new Student(1, 'Ivanov', 'Ivan', 2010, 2015, 'Faculty of law', '+380121234567');
+        studentsDataBase[1] = new Student(2, 'Petrov', 'Petro', 2007, 2010, 'Faculty of electronics');
+        studentsDataBase[2] = new Student(3, 'Kozlov', 'Egor', 2011, 2015, 'Faculty of law', '+380561234567');
+        studentsDataBase[3] = new Student(4, 'Kusch', 'Gennadiy', 2011, 2016, 'Faculty of computers');
+        studentsDataBase[4] = new Student(5, 'Lyubomirov', 'Lyubomir', 2012, 2013, 'Faculty of phisics', '+380121683467');
 
         renderStudentsTable(studentsDataBase);
 

@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
         let clickMePageHeader = document.createElement('h1');
         clickMePageHeader.className = 'main-content__header';
-        clickMePageHeader.innerHTML = 'Universal clickMe(event) function';
+        clickMePageHeader.innerHTML = 'Universal clickMe function';
         clickMePage.appendChild(clickMePageHeader);
     
         let clickMePageText = document.createElement('p');

@@ -35,6 +35,7 @@ $primaryFont: Verdana ,sans-serif;
         height: 70px;
         width: 100%;
         flex-grow: 0;
+        flex-wrap: nowrap;
     }
 
     &__logo-box {
@@ -337,6 +338,10 @@ $primaryFont: Verdana ,sans-serif;
             max-width: 900px;
         }
 
+        @media all and (min-width: 768px) {
+            height: calc(100vh - 200px);
+        }
+
         &--unactive {
             display: none;
         }
@@ -567,7 +572,7 @@ $primaryFont: Verdana ,sans-serif;
 }
 
 .resize-screen {
-    width: 80px;
+    width: 120px;
     height: 20px;
     margin: 5px;
     color: #ffffff;
@@ -669,6 +674,15 @@ $primaryFont: Verdana ,sans-serif;
     margin: 20px auto;
     min-width: 600px;
     border-collapse: collapse;
+
+    & th {
+        border: 1px solid #0000ff;
+        font-family: $primaryFont;
+        font-size: 16px;
+        padding: 5px;
+        text-align: center;
+        background-color: yellow;
+    }
 
     & td {
         border: 1px solid #0000ff;
@@ -809,15 +823,19 @@ $primaryFont: Verdana ,sans-serif;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    flex-wrap: no-wrap;
+    
+    &__data {
+        display: flex;
+        flex-wrap: wrap;
+    }
     
     &__item {
         color: #ffffff;
         font-family: $primaryFont;
-        margin: 5px 10px;
+        margin: 5px 8px;
         display: inline-block;
         font-size: 15px;
-        font-weight: 700;
+        // font-weight: 700;
     }
 
     &__img {
@@ -828,3 +846,34 @@ $primaryFont: Verdana ,sans-serif;
     }
 }
 
+#map {
+    height: 100%;
+    margin: 20px 30px;
+}
+
+.jquery-table {
+    @extend .students-table;
+    font-size: 10px;
+}
+
+.jquery-form {
+    @extend .students-form;
+    margin: 30px auto;
+
+    &__text {
+        @extend .students-form__text;
+        min-width: 100px;
+    }
+
+    &__input {
+        @extend .students-form__input;
+    }
+
+    &__submit {
+        @extend .students-form__submit;
+    }
+
+    &__tip {
+        @extend .students-form__tip;
+    }
+}

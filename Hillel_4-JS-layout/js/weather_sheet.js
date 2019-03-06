@@ -1,8 +1,10 @@
 function onWeatherData(data) {
     const dataFromServer = data;
     const weatherObject = {
-        temperature: `${Math.round((dataFromServer.currently.temperature - 32) * 5 / 9 * 10) / 10} &#8451;`,
-        humidity: `${Math.round(dataFromServer.currently.humidity * 100)} %`,
+        temperature: `${Math.round(dataFromServer.currently.temperature * 10) / 10}&#8451;`,
+        humidity: `${Math.round(dataFromServer.currently.humidity * 100)}%`,
+        precipitationProbability: `${Math.round(dataFromServer.currently.precipProbability * 100)}%`,
+        precipitationType: `${dataFromServer.currently.precipType}`,
         icon: dataFromServer.currently.icon,
         summary: dataFromServer.currently.summary,
         windIndex: Math.round((dataFromServer.currently.windBearing) / 45),
@@ -27,9 +29,9 @@ function onWeatherData(data) {
                                                 ? 'N'
                                                 : ' ';
         },
-        windSpeed: `${Math.round(dataFromServer.currently.windSpeed * 4.47) / 10} m/s`
+        windSpeed: `${Math.round(dataFromServer.currently.windSpeed * 10) / 10} m/s`
     };
-    
+
     if (document.getElementsByClassName('weather-sheet').length > 0) {
 
         const img = document.getElementById('weather-img');
@@ -45,6 +47,16 @@ function onWeatherData(data) {
 
         const windSheet = document.getElementById('wind');
         windSheet.innerHTML = `Wind: ${weatherObject.windDirection()} ${weatherObject.windSpeed}`;
+
+        const precipitationProbabilitySheet = document.getElementById('precipitationProbability');
+        precipitationProbabilitySheet.innerHTML = `Precipitation probability: ${weatherObject.precipitationProbability}`;
+
+        const precipitationTypeSheet = document.getElementById('precipitationType');
+        if (weatherObject.precipitationProbability != `0%`) {
+            precipitationTypeSheet.innerHTML = `Type: ${weatherObject.precipitationType}`;
+        } else {
+            precipitationTypeSheet.innerHTML = ` `;
+        }
 
     } else {
 
@@ -81,5 +93,23 @@ function onWeatherData(data) {
         windSheet.id = 'wind';
         windSheet.innerHTML = `Wind: ${weatherObject.windDirection()} ${weatherObject.windSpeed}`;
         textData.appendChild(windSheet);
+
+        const precipitationProbabilitySheet = document.createElement('span');
+        precipitationProbabilitySheet.className = 'weather-sheet__item';
+        precipitationProbabilitySheet.id = 'precipitationProbability';
+        precipitationProbabilitySheet.innerHTML = `Precipitation probability: ${weatherObject.precipitationProbability}`;
+        textData.appendChild(precipitationProbabilitySheet);
+
+        const precipitationTypeSheet = document.createElement('span');
+        precipitationTypeSheet.className = 'weather-sheet__item';
+        precipitationTypeSheet.id = 'precipitationType';
+
+        if (weatherObject.precipitationProbability != `0%`) {
+            precipitationTypeSheet.innerHTML = `Type: ${weatherObject.precipitationType}`;
+        } else {
+            precipitationTypeSheet.innerHTML = ` `;
+        }
+
+        textData.appendChild(precipitationTypeSheet);
     }
 }
